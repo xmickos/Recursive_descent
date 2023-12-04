@@ -1,20 +1,28 @@
-#include <stdio.h>
 #include <stdlib.h>
-// Первый удачный запуск -- 23:12, старт счёта в 22:45-22:47
+#include <stdio.h>
 
-int GetN();
+#define DEFAULT_SIZE 128
 
-int GetG(char* str);
+#define VERIFY_LOGFILE(logfile) do{ if(logfile == nullptr){ printf("\033[1;31mWe've lost logfile!\033[0m\n "); return -1;}} while(0)
 
-void syntax_error();
+#define DEBUG_ECHO(logfile) do{ fprintf(logfile, "I am %s, p = %d, next symbols is %c\n", __FUNCTION__, p, s[p]); }while(0)
+#define DEBUG_CALL(next_func, logfile) do{ fprintf(logfile, "I am %s, calling " #next_func "\n", __FUNCTION__);}while(0)
 
-void syn_assert(bool condition);
+struct Lexema{
+    int type = 0;
+    int val = 0;
+    char name[128] = {};
+};
 
-int GetE();
+int syntax_error(FILE* logfile);
 
-//
-// G_3 ::= E'\0'
-// T ::= N{[*/}N*
-// E ::= T{[+-]T}*
-// N ::= ['0'-'9']
-//
+int GetG(const char* str, FILE* logfile);
+
+int GetE(FILE* logfile);
+
+int GetT(FILE* logfile);
+
+int GetP(FILE* logfile);
+
+int GetN(FILE* logfile);
+

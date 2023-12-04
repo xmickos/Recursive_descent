@@ -1,0 +1,7 @@
+I am GetG, calling GetE
+I am GetE, p = 0, next symbols is 2
+I am GetE, calling GetT
+I am GetT, p = 0, next symbols is 2
+I am GetT, calling GetP
+I am GetP, p = 0, next symbols is 2
+I am GetN, p = 0, next symbols is 2
